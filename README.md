@@ -62,9 +62,9 @@ pythonproject/
 ├── data/                       # 测试数据
 │   └── sql/                    # 数据库断言用到的 SQL（XML 格式）
 ├── testcase/                   # 测试用例
-│   ├── single_api/       # 单接口用例
-│   ├── business_scenario/     # 业务场景串联用例
-│   └── product_manager/         # 商品管理模块用例
+│   ├── single_api/             # 单接口用例
+│   ├── business_scenario/      # 业务场景串联用例
+│   └── product_manager/        # 商品管理模块用例
 ├── tests/                      # 框架自身的单元测试（不依赖被测服务，CI 里会跑）
 ├── conftest.py                 # pytest 全局钩子（会话级夹具、结果汇总）
 ├── environment.xml             # Allure 报告的环境信息
@@ -83,11 +83,7 @@ pythonproject/
 pip install -r requirements.txt
 ```
 
-使用国内镜像源会快很多：
-
-```bash
-pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
-```
+如果所在网络访问 PyPI 较慢，可自行追加 `-i <镜像源地址>` 指定镜像。
 
 ### 2. 准备配置
 
@@ -176,7 +172,7 @@ python run.py
 
 ```yaml
         startDate: ${start_time()}
-        ruleIds: ["${get_extract_data_lst(forbiddenRule, -2)}"]
+        ruleIds: ["${get_extract_data(forbiddenRule, -2)}"]
 ```
 
 ## 测试报告
@@ -223,4 +219,10 @@ pytest tests/ -v
 
 ## 说明
 
-本项目用于接口自动化测试的实践与学习，示例用例中的接口地址、账号密码均为测试环境数据。
+仓库中的示例用例对接本地测试环境，`data/` 下的账号密码均为测试数据。
+
+框架与具体业务系统解耦：替换 `testcase/` 下的用例，并把 `conf/config.ini` 中 `[api_envi]` 的 `host` 指向目标服务，即可复用到其他项目。
+
+## License
+
+基于 [MIT License](LICENSE) 发布。
