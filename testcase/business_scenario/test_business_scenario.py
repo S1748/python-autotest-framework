@@ -12,7 +12,7 @@ from base.generateId import m_id, c_id
 class TestEBusinessScenario:
 
     @allure.story(next(c_id) + '商品列表到下单支付流程')
-    @pytest.mark.parametrize('case_info', get_testcase_yaml('./testcase/Business interface/BusinessScenario.yml'))
+    @pytest.mark.parametrize('case_info', get_testcase_yaml('./testcase/business_scenario/BusinessScenario.yml'))
     def test_business_scenario(self, case_info):
         allure.dynamic.title(case_info['baseInfo']['api_name'])
         RequestBase().specification_yaml(case_info)

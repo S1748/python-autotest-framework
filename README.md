@@ -62,9 +62,9 @@ pythonproject/
 ├── data/                       # 测试数据
 │   └── sql/                    # 数据库断言用到的 SQL（XML 格式）
 ├── testcase/                   # 测试用例
-│   ├── Single interface/       # 单接口用例
-│   ├── Business interface/     # 业务场景串联用例
-│   └── ProductManager/         # 商品管理模块用例
+│   ├── single_api/       # 单接口用例
+│   ├── business_scenario/     # 业务场景串联用例
+│   └── product_manager/         # 商品管理模块用例
 ├── conftest.py                 # pytest 全局钩子（会话级夹具、结果汇总）
 ├── environment.xml             # Allure 报告的环境信息
 ├── pytest.ini                  # pytest 配置
