@@ -1,0 +1,66 @@
+; ============================================================
+; 配置模板：复制本文件为 config.ini 后填写真实值
+;   cp conf/config.ini.example conf/config.ini
+; config.ini 已被 .gitignore 忽略，不会提交到仓库
+; ============================================================
+
+[api_envi]
+; 被测服务的地址。用例 YAML 里的 url 只需写接口路径，如 /dar/user/login
+host = http://127.0.0.1:8080
+
+[MYSQL]
+; 数据库断言会用到
+host = 127.0.0.1
+port = 3306
+username = root
+password = your_password
+database = your_database
+
+[REDIS]
+host = 127.0.0.1
+port = 6379
+username =
+password = your_password
+db = 0
+
+[CLICKHOUSE]
+host = 127.0.0.1
+port = 8123
+username = default
+password = your_password
+timeout = 10
+db = default
+
+[MongoDB]
+host = 127.0.0.1
+port = 27017
+username = admin
+password = your_password
+database = admin
+
+[EMAIL]
+; 163 邮箱需使用「授权码」而非登录密码
+host = smtp.163.com
+port = 25
+user = your_email@163.com
+passwd = your_smtp_auth_code
+addressee = receiver@example.com
+subject = 接口自动化测试报告
+
+[SSH]
+; 远程执行测试时使用，不需要可留空
+host = 127.0.0.1
+port = 22
+username = root
+password = your_password
+timeout = 10
+command =
+
+[REPORT_TYPE]
+; 报告类型：allure 或 tm
+type = allure
+
+[DINGTALK]
+; 钉钉机器人加签凭据，不使用通知功能可留空
+access_token =
+secret =
