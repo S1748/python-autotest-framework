@@ -1,0 +1,1498 @@
+﻿==== 共 38 页 ====
+
+
+========== 第 1 页 ==========
+一、 常规接口实战练习 
+注意：1）首先需要启动接口服务，下载接口服务【flaskServer.zip】文件，解压后双击点击
+flaskServer.exe 启动服务即可。打开后不要关闭服务！ ！ ！ 
+ 2）如果第一步不行，就打开框架源码里面 base/flask_service.py，右键直接运行。 
+服务器地址：http://127.0.0.1:8787 
+1.用户登录接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+用户登录 /dar/user/login Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/x-www-form-
+urlencoded;charset=UTF-8 
+是   
+参数 
+参数名称 是否必填 参数类型 备注 
+user_name 是 String 用户名 
+passwd 是 String 密码 
+示例： 
+{ 
+"user_name": "test01", 
+"passwd": "admin123" 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+msg String 必须  登录成功提示信息 
+msg_code Int 非必须 200 返回状态码 
+error_code Int 非必须 None 返回错误码 
+token Int 必须  返回 token， 用于后
+续接口校验登录信
+息是否正确 
+ 
+
+========== 第 2 页 ==========
+2.新增用户接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+新增用户 /dar/user/addUser post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/x-www-form-
+urlencoded;charset=UTF-8 
+是   
+参数 
+参数名称 是否必填 参数类型 备注 
+username 是 String 用户名 
+password 是 String 密码 
+role_id 是 String 角色 id 
+dates 是 String 有效期 
+phone 是 String 手机号码 
+token 是 String 登录信息校验 
+示例： 
+{ 
+"username": "testadduser", 
+"password": "tset6789890", 
+"role_id": 123456789, 
+"dates": "2023-12-31", 
+"phone": 13800000000, 
+"token": "0115930862970452224" 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+msg String 必须  登录成功提示信息 
+msg_code Int 非必须 200 返回状态码 
+error_code Int 非必须 None 返回错误码 
+ 
+3.删除用户接口 
+基本信息 
+
+========== 第 3 页 ==========
+接口名称 接口路径 请求方法 创建人 备注 
+删除用户 /dar/user/deleteUser Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/x-www-form-
+urlencoded;charset=UTF-8 
+是   
+参数 
+参数名称 是否必填 参数类型 备注 
+user_id 是 Int 用户 id 
+示例： 
+{ 
+"user_id": 123839387391912 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+msg String 必须  登录成功提示信息 
+msg_code Int 非必须 200 返回状态码 
+error_code Int 非必须 None 返回错误码 
+ 
+3.查询用户接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+查询用户 /dar/user/queryUser Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/x-www-form-
+urlencoded;charset=UTF-8 
+是   
+参数 
+参数名称 是否必填 参数类型 备注 
+user_id 是 Int 用户 id 
+示例： 
+{ 
+
+========== 第 4 页 ==========
+"user_id": 123839387391912 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+msg String 必须  登录成功提示信息 
+msg_code Int 非必须 200 返回状态码 
+error_code Int 非必须 None 返回错误码 
+ 
+4.修改用户接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+修改用户 /dar/user/updateUser Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/x-www-form-
+urlencoded;charset=UTF-8 
+是   
+参数 
+参数名称 是否必填 参数类型 备注 
+username 是 String 用户名 
+password 是 String 密码 
+role_id 是 String 角色 id 
+dates 是 String 有效期 
+phone 是 String 手机号码 
+token 是 String 登录信息校验 
+示例： 
+{ 
+"username": "testadduser", 
+"password": "tset6789#$123", 
+"role_id": 89588181111112343, 
+"dates": "2023-12-31", 
+"phone": 13800000000 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+
+========== 第 5 页 ==========
+msg String 必须  登录成功提示信息 
+msg_code Int 非必须 200 返回状态码 
+error_code Int 非必须 None 返回错误码 
+二、电子商务项目实战接口 
+1.获取商品列表接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+获取商品列
+表 
+/coupApply/cms/goodsList Get Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/x-www-form-
+urlencoded;charset=UTF-8 
+是   
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+msgType 是 String getHandsetListOfCust  
+page 否 int   
+size 否 int   
+请求入参示例 
+{ 
+"msgType": "getHandsetListOfCust", 
+"page": 1, 
+"size": 20 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+goodList String 必须  商品列表内容 
+error Int 非必须 200 错误信息 
+error_code Int 非必须 None 返回错误码 
+secache_time String 非必须   
+secache_date String 非必须  当前时间 
+server_time String 非必须  服务器时间 
+
+========== 第 6 页 ==========
+api_type String 非必须   
+translate_language String 非必须  多语言 
+ 
+2.获取商品详情接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+获取商品详
+情内容 
+/coupApply/cms/productDetail Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是  Json 提交 
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+pro_id 是 String 1234499012 商品 id 
+page 否 int   
+size 否 int   
+入参示例 
+{ 
+"pro_id": "33809635011", 
+"page": 1, 
+"size": 20 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+item String 必须  商品详情内容 
+error Int 非必须 200 错误信息 
+error_code Int 非必须 None 返回错误码 
+secache_time String 非必须   
+secache_date String 非必须  当前时间 
+server_time String 非必须  服务器时间 
+api_type String 非必须   
+translate_language String 非必须  多语言 
+translate_engine String 非必须   
+server_memory String 非必须   
+request_id String 非必须   
+
+========== 第 7 页 ==========
+last_id String 非必须   
+3.提交订单接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+商品提交订单 /coupApply/cms/placeAnOrder Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是  Json 提交 
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+goods_id 是 String 18382788819 商品 id 
+number 是 int  购买数量 
+propertyChildIds 是 String  商 品 规 格 尺
+寸 
+inviter_id 是 Int  商 品 分 享 编
+号 
+price 是 String  商品价格 
+freight_insurance 是 String  运费险 
+discount_code 是 String  优惠码 
+consignee_info 是 Dict（字典）  收货人信息 
+请求参数示例 
+{ 
+"goods_id": "18382788819", 
+"number": 2, 
+"propertyChildIds": "2:9", 
+"inviter_id": 127839112, 
+"price": "128", 
+"freight_insurance": "0.00", 
+"discount_code": "002399", 
+"consignee_info": { 
+"name": "张三", 
+"phone": 13800000000, 
+"address": "北京市海淀区西三环北路 74 号院 4 栋 3 单元 1008" 
+} 
+} 
+返回数据 
+
+========== 第 8 页 ==========
+名称 类型 是否必须 默认值 备注 
+crateTime String 必须  创建订单时间 
+error Int 非必须  错误信息 
+error_code String 非必须  返回错误码 
+message String 非必须  消息提示 
+orderNumber String 必须  订单编号 
+userId String 必须  用户 id 
+translate_language String 非必须  多语言 
+返回值示例： 
+{ 
+"crateTime": "2023-04-21 17:12:21", 
+"error": "", 
+"error_code": "0000", 
+"message": "提交订单成功", 
+"orderNumber": "303681201288207260431", 
+"userId": 3036812012882072604, 
+"translate_language": "zh-CN" 
+} 
+4.订单支付接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+订单支付 /coupApply/cms/orderPay Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是  Json 提交 
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+orderNumber 是 String  订单编号 
+userId 是 String  用户 id 
+timeStamp 否 Int  当 前 时 间 时
+间戳 
+请求参数示例 
+{ 
+"orderNumber": "103841668442551481209", 
+"userId": "7462654665439538777", 
+"timeStamp": 169232689 
+
+========== 第 9 页 ==========
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+crateTime String 必须  创建订单时间 
+error Int 非必须  错误信息 
+error_code String 非必须  返回错误码 
+message String 非必须  消息提示 
+translate_language String 必须  多语言 
+返回值示例： 
+{ 
+"create": "2023-04-21 18:19:28", 
+"error": "", 
+"error_code": "0000", 
+"message": "订单支付成功", 
+"translate_language": "zh-CN" 
+} 
+5.添加购物车接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+添加购物车 /coupApply/cms/shoppingJoinCart Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是  Json 提交 
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+goods_id 是 String  商品 id 
+count 是 Int  购买数量 
+price 是 String  商品价格 
+timeStamp 否 Int  当 前 时 间 时
+间戳 
+请求参数示例 
+{ 
+"goods_id": "18382788819", 
+"count": 2, 
+"price": "128", 
+"timeStamp": 169232689 
+
+========== 第 10 页 ==========
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+crateTime String 必须  创建订单时间 
+error Int 非必须  错误信息 
+error_code String 非必须  返回错误码 
+message String 非必须  消息提示 
+translate_language String 必须  多语言 
+userId int 必须  用户 id 
+cartList List 必须  购物车 商品 列
+表 
+返回值示例： 
+{ 
+"cartList": [], 
+"createTime": "2023-04-23 11:19:22", 
+"error": "", 
+"error_code": "0000", 
+"message": "success", 
+"translate_language": "zh-CN", 
+"userId": "2929549245116909803" 
+} 
+6.删除购物车商品接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+购物车商品
+删除 
+/coupApply/cms/delCart Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/x-www-form-
+urlencoded 
+是  表单提交 
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+productId 是 String  商品 id 
+timeStamp 否 Int  当 前 时 间 时
+间戳 
+
+========== 第 11 页 ==========
+请求参数示例 
+{ 
+"productId": "33809635011", 
+"timeStamp": 2 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+crateTime String 必须  创建订单时间 
+error Int 非必须  错误信息 
+error_code String 非必须  返回错误码 
+message String 非必须  消息提示 
+translate_language String 必须  多语言 
+返回值示例： 
+{ 
+"createTime": "2023-04-23 11:19:22", 
+"error": "", 
+"error_code": "0000", 
+"message": "success", 
+"translate_language": "zh-CN", 
+"userId": "2929549245116909803" 
+} 
+7.校验商品订单状态接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+校验商品订
+单状态 
+/coupApply/cms/checkOrderStatus Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是  Json 提交 
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+orderNumber 是 String  订单编号 
+timeStamp 否 Int  当 前 时 间 时
+间戳 
+请求参数示例 
+
+========== 第 12 页 ==========
+{ 
+"orderNumber": "208019542305257723473", 
+"timeStamp": 2 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+queryTime String 必须  查询时间 
+error Int 非必须  错误信息 
+error_code String 非必须  返回错误码 
+status String 非必须  订单状态： 
+0：已支付 
+1：待支付 
+2：订单关闭 
+translate_language String 必须  多语言 
+返回值示例： 
+{ 
+"error": "", 
+"error_code": "", 
+"queryTime": "2023-04-23 14:20:45", 
+"status": "0", 
+"translate_language": "zh-CN" 
+} 
+8.校验商品物流状态接口 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+校验商品
+物流状态 
+/coupApply/cms/checkLogisticsStatus Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是  Json 提交 
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+orderNumber 是 String  订单编号 
+timeStamp 否 Int  当 前 时 间 时
+间戳 
+
+========== 第 13 页 ==========
+请求参数示例 
+{ 
+"orderNumber": "208019542305257723473", 
+"timeStamp": 2 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+queryTime String 必须  查询时间 
+error Int 非必须  错误信息 
+error_code String 非必须  返回错误码 
+status String 非必须  物流状态： 
+0：待发货 
+1：已发货 
+2：待收货 
+3：已收货 
+translate_language String 必须  多语言 
+返回值示例： 
+{ 
+"error": "", 
+"error_code": "", 
+"queryTime": "2023-04-23 14:20:45", 
+"status": "0", 
+"translate_language": "zh-CN" 
+} 
+ 
+9.校验商品库存 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+校验商品库
+存 
+/coupApply/cms/shoppingInventory Post Admin  
+请求参数 
+请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是  Json 提交 
+参数 
+参数名称 是否必填 参数类型 示例 备注 
+
+========== 第 14 页 ==========
+goodsId 是 String  商品 id 
+count    购买数量 
+timeStamp 否 Int  当 前 时 间 时
+间戳 
+请求参数示例 
+{ 
+"goodsId": "18382788819", 
+"count": "6", 
+"timeStamp": 2 
+} 
+返回数据 
+名称 类型 是否必须 默认值 备注 
+createTime String 必须  查询时间 
+error Int 非必须  错误信息 
+error_code String 非必须  返回错误码 
+status String 非必须  库存状态： 
+0：库存正常 
+1：库存不足 
+translate_language String 必须  多语言 
+返回值示例： 
+{ 
+"createTime": "2023-04-23 15:16:06", 
+"error": "商品库存不足", 
+"error_code": "0000", 
+"status": "1", 
+"translate_language": "zh-CN" 
+} 
+三、物流项目接口实战 
+此项目的接口请求需要 header 中携带 cookie 信息 
+1、获取下单物料信息 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+
+========== 第 15 页 ==========
+获取物料
+信息 
+/api/order/customer/orderPlan/getMaterial Get/post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 否   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+3. 请求入参示例 
+不用传参 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "material": [ 
+        "1676511586856882178", 
+        "1676511586856882134", 
+        "1676511524756882178", 
+        "1676590766856882178", 
+        "1676511586812182178" 
+    ], 
+    "message": "操作成功" 
+} 
+2、货主（托运人）下订单 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+货主下订
+单 
+/api/order/customer/orderPlan/create post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+
+========== 第 16 页 ==========
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+orderInfo 是 字典（dict）   
+template 是 String   
+urgentType 是 int   
+cusName 是 String   
+orderType 是 Int   
+charter 是 Int   
+planType 是 Int   
+transStartTime 是 String 格式：%Y-%m-%d %H:%M:%S  
+transEndTime 是 String 格式：%Y-%m-%d %H:%M:%S  
+orderMark 否 String   
+cusId 是 String   
+orderCapacityList 是 数组（list）   
+materialCategoryId 是 String   
+3. 请求入参示例 
+{ 
+  "orderInfo": { 
+    "template": "define", 
+    "urgentType": 2, 
+    "cusName": "总仓", 
+    "orderType": 1, 
+    "charter": 2, 
+    "planType": 1, 
+    "transStartTime": "2023-07-14 10:37:02", 
+    "transEndTime": "2023-07-16 10:38:58", 
+    "orderMark": "货主下单", 
+    "cusId": "1661242770195464193" 
+  }, 
+  "orderCapacityList": [ 
+    { 
+      "materialCategoryId": "1676511586856882178", 
+      "materialCategory": "粮食", 
+      "materialName": "小麦", 
+      "materialUnit": "KG", 
+      "materialUnitId": "1660891402561581058", 
+      "settlementUnit": "KG", 
+      "syncMaterialId": "4", 
+      "billingWeightCoe": null, 
+      "billingVolumeCoe": null, 
+      "sendWeightCoe": null, 
+      "sendVolumeCoe": null, 
+      "materialSpecList": null, 
+
+========== 第 17 页 ==========
+      "materialId": "1661349087048306690", 
+      "sendCusId": "1661663745663741954", 
+      "sendCusName": "码头尖庄仓", 
+      "receiveCusId": "1661624733406285825", 
+      "receiveCusName": "502 车间", 
+      "sendAdrId": "1674617286107828226", 
+      "sendAdrName": "长宁县五谷粮食购销有限责任公司", 
+      "sendPoiId": "1674615819826425857", 
+      "sendAdrDetail": null, 
+      "receiveAdrId": "1674208708683337730", 
+      "receiveAdrName": "五区一区", 
+      "receivePoiId": "1674208399908237313", 
+      "receiveAdrDetail": "五区一区", 
+      "materialSpecId": "1661349088147214337", 
+      "specName": "1", 
+      "materialNum": 100, 
+      "materialSpecUnit": "KG", 
+      "remark": "原粮" 
+    } 
+  ], 
+  "orderVehicleList": [], 
+  "orderBoxList": [] 
+} 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "message": "操作成功", 
+    "orderNo": "DD20230713164416758" 
+} 
+ 
+3、集团接收货主订单 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+总调集团接
+单 
+/api/order/pc/order/master/receive post Admin  
+请求参数 
+
+========== 第 18 页 ==========
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+orderId 是 string   
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+"orderId": "DD20230713170621024", 
+"times": 1233125891 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "message": "操作成功" 
+} 
+4、集团分配订单给物流公司 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+总调集团分
+配订单 
+/api/order/pc/order/assign post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+orderId 是 string   
+orgId 是 String 4140913758110176843 
+6140913758128971280 
+ 
+
+========== 第 19 页 ==========
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+    "orderId": "DD20230713172619728", 
+    "orgId":"4140913758110176843", 
+    "times": 1233125891 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "message": "操作成功" 
+} 
+ 
+5、物流公司接单 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+物流公司接
+单 
+/api/order/pc/order/trans/receive post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+orderId 是 string   
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+"orderId": "DD20230713170621024", 
+"times": 1233125891 
+} 
+
+========== 第 20 页 ==========
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "message": "操作成功" 
+} 
+ 
+6、物流公司拆分订单 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+物流公司
+拆分订单 
+/api/order/pc/logisticsOrder/handSplitOrder post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+list 是 数组   
+itemId 是 String   
+itemNum 是 Int   
+splitNum 是 Int   
+logisticsOrderId 是 String 物流订单号  
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+    "list": [ 
+        { 
+            "itemId": "1679423155475509250", 
+            "itemNum": 100, 
+            "splitNum": 50 
+        } 
+    ], 
+
+========== 第 21 页 ==========
+    "logisticsOrderId": "WL2023071318125016668" 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "logisticsStatus": "1", 
+    "message": "操作成功" 
+} 
+ 
+7、物流公司调度派车 
+基本信息 
+接口名
+称 
+接口路径 
+请求方
+法 
+创建人 备注 
+调度派
+车 
+/api/order/pc/logisticsOrder/handCapacityDispatch post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+ 是 数组 最外层是一个数组格式  
+logisticsOrderId 是 String 物流 id， 由物流接单返回  
+itemId 是 String 物料 id  
+dispatchNum 是 Int 调度数量  
+carrierId 是 String 承运商 id  
+carrierName 是 String 承运商名称  
+driverId 是 String 司机 id  
+driverName 是 String 司机姓名  
+driverPhone 是 String 司机手机号  
+vehicleId 是 String 车辆 id  
+vehicleNo 是 String 车牌号  
+
+========== 第 22 页 ==========
+vehicleColor 是 Int 车牌颜色，1 绿色 2 黄色  
+vehicleDistinguishNo 是 String 车辆自编号  
+vehicleType 是 String 车辆类型 id  
+vehicleTypeName 是 String 车型  
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+[ 
+    { 
+  "logisticsOrderId": "WL2023071411141721972", 
+  "itemId": "16794264872418631691", 
+  "dispatchNum": 50, 
+  "carrierId": "1661558222301904898", 
+  "carrierName": "长凡贸易有限公司", 
+  "driverId": "1661573945107611649", 
+  "driverName": "李斯", 
+  "driverPhone": "15810108888", 
+  "vehicleId": 1661574934279684098, 
+  "vehicleNo": "川AL6826", 
+  "vehicleColor": 2, 
+  "vehicleDistinguishNo": "AL6826", 
+  "vehicleType": "1657997625979293698", 
+  "vehicleTypeName": "自卸车" 
+} 
+] 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "logisticsStatus": "1", 
+    "message": "操作成功", 
+    "scheduleNo": "DDU202307141317002210" 
+} 
+ 
+8、获取调度单页面列表数据 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+
+========== 第 23 页 ==========
+获取调度单
+页面列表 
+/api/order/pc/schedule/findPage post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+current 是 Int   
+size 否 Int   
+scheduleMapStatus 是 Int 调度单状态标识  
+dataType 是 String 调度单数据标识  
+dataValue 是 String 调度单号，由调度派车接
+口返回 
+ 
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+  "current": 1, 
+  "size": 20, 
+  "scheduleMapStatus": 1, 
+  "dataType": "2", 
+  "dataValue": "DDU202307141340531792" 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": { 
+        "countId": null, 
+        "current": 1, 
+        "maxLimit": null, 
+        "optimizeCountSql": true, 
+        "orders": [], 
+        "pages": "1", 
+        "records": [ 
+            { 
+                "abnormalReceiptReason": "", 
+                "actualCarrier": "", 
+                "actualDeliveryTime": "2023-07-15 13:42:00", 
+
+========== 第 24 页 ==========
+                "actualReceivingTime": "2023-07-17 13:42:00", 
+                "carId": "177853", 
+                "carrierId": "1661558222301904898", 
+                "carrierName": "长凡贸易有限公司", 
+                "charter": 2, 
+                "containerNo": "", 
+                "createTime": "2023-07-14 13:42:00", 
+                "createUser": "智慧物流公司", 
+                "driverName": "李斯", 
+                "driverTel": "15810108888", 
+                "id": "6280790243788358488", 
+                "scheduleNo": "DDU202307141340531792" 
+            } 
+        ] 
+    }, 
+    "message": "操作成功" 
+} 
+ 
+9、获取调度单详情 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+获取调度单
+详情 
+/api/order/pc/scheduleDetail/info post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+scheduleNo 是 String 调度单号，由调度派车接
+口返回 
+ 
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+  "scheduleNo": "DDU202307141357430566" 
+
+========== 第 25 页 ==========
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": { 
+        "abnormalReceiptReason": null, 
+        "actualCarrier": null, 
+        "actualDeliveryTime": null, 
+        "actualReceivingTime": null, 
+        "approachGoodsYard": 2, 
+        "carId": null, 
+        "carrierId": "1661558222301904898", 
+        "carrierName": null, 
+        "charter": 2, 
+        "consignor": null, 
+        "containerNo": null, 
+        "createTime": "2023-07-14 13:58:17", 
+        "createUser": null, 
+        "customerCode": null, 
+        "customerName": null, 
+        "driverName": null, 
+        "driverTel": null, 
+        "endLocation": null, 
+        "entrustParty": null, 
+        "executiveOrg": "物流公司", 
+        "executiveOrgId": "4140913758110176843", 
+        "executiveOrganization": null, 
+        "freight": null, 
+        "gisMileage": null, 
+        "handingCharge": null, 
+        "id": null, 
+        "loadReservationTime": null, 
+        "loadWareCode": null, 
+        "logisticsBeginTime": null, 
+        "logisticsEndTime": null, 
+        "logisticsOrderNo": "W202307130000001793", 
+        "logisticsTime": "48:01:56", 
+        "logisticsType": 1, 
+        "materialName": null, 
+        "mileage": null, 
+        "ncOrderNo": null, 
+        "number": null, 
+
+========== 第 26 页 ==========
+        "orderNo": "DD202307130000004703", 
+        "orderSaleType": 6, 
+        "orderSourceNo": null, 
+        "orderSystemNo": "DD202307130000004702", 
+        "orderType": null, 
+        "organization": null, 
+        "payMethod": null, 
+        "planCap": null, 
+        "priceMethod": null, 
+        "printDeptCode": null, 
+        "printDeptName": null, 
+        "recShipperName": "智慧物流公司", 
+        "receiptAble": null, 
+        "receiptAdministrativeDivision": null, 
+        "receiveAddress": "五区一区", 
+        "receiveAdrName": "五区一区", 
+        "receiveCityCode": "511500", 
+        "receiveContactName": "502 车间", 
+        "receiveContactPhone": "13730885169", 
+        "receiveCountyCode": "511502", 
+        "receiveCusName": "502 车间", 
+        "receiveDistrict": null, 
+        "receiveName": "502 车间", 
+        "receiveProvinceCode": "510000", 
+        "receiverName": null, 
+        "requireArriveTime": null, 
+        "requireReceiptTime": null, 
+        "requireTakeTime": null, 
+        "requiredDeliveryTime": null, 
+        "requiredReceivingTime": null, 
+        "rfid": null, 
+        "scanDeptCod": null, 
+        "scanDeptName": null, 
+        "scheduleMapStatus": null, 
+        "scheduleNo": "DDU202307141357430566", 
+        "scheduleRemark": null, 
+        "scheduleStatus": 3, 
+        "scheduleStatusDesc": "待确认", 
+        "scheduleType": null, 
+        "sendAddress": null, 
+        "sendAdministrativeDivision": null, 
+        "sendAdrName": "五谷粮食购销有限责任公司", 
+        "sendCityCode": "511500", 
+        "sendContactName": "码头尖庄仓", 
+
+========== 第 27 页 ==========
+        "sendContactPhone": "13730885169", 
+        "sendCountyCode": "511502", 
+        "sendCusName": "码头尖庄仓", 
+        "sendDistrict": null, 
+        "sendName": "码头尖庄仓", 
+        "sendProvinceCode": "510000", 
+        "settlementOrg": "物流公司", 
+        "settlementOrgId": "4140913758110176843", 
+        "shipMethod": "1", 
+        "shipperName": "总仓", 
+        "startLocation": null, 
+        "stowageMode": null, 
+        "subsectionNo": null, 
+        "totalVolume": null, 
+        "totalWeight": null, 
+        "transName": "标准", 
+        "unloadReservationTime": null, 
+        "unloadWareCode": null, 
+        "updateTime": null, 
+        "updateUser": "物流公司", 
+        "urgent": null, 
+        "vehicleColor": null, 
+        "vehicleCount": 1, 
+        "vehicleDistinguishNo": null, 
+        "vehicleNo": null, 
+        "vehicleType": null, 
+        "vehicleTypeName": null 
+    }, 
+    "message": "操作成功" 
+} 
+ 
+10、司机 APP 端确认运输 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+司机确认运
+输 
+/api/order/app/schedule/confirm post Admin  
+请求参数 
+
+========== 第 28 页 ==========
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+scheduleNo 是 String 调度单号，由调度派车接
+口返回 
+ 
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+  "scheduleNo": "DDU202307141409506827", 
+  "timeStamp": 1689315195 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "message": "司机确认成功", 
+    "scheduleNoStatus": "1" 
+} 
+ 
+11、SRM 系统推送运量出库信息 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+Srm 推出库
+信息 
+/rpc/srm/inventory post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+
+========== 第 29 页 ==========
+scheduleNo 是 String 调度单号， 由调度派车接口
+返回 
+ 
+actionTime 是 String 格式：%Y-%m-%d %H:%M:%S  
+boxSpec 是 String 集装箱规格  
+containerNo 是 String 集装箱号  
+vehicleNo 是 String 车牌号  
+wareHouseName 是 String 发货地名称  
+wareHouseAddr 是 String 发货地详细地址  
+weightNo 是 String 司称单号， 后续退货接口需
+要使用司称单号最为唯一
+的依据 
+ 
+materialList 是 List（数组） 运输物料信息  
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+  "scheduleNo":"DDU202307141437136374", 
+  "actionTime": "2023-07-14 14:29:15", 
+  "boxSpec": "40 尺寸", 
+  "containerNo": "AJ-YJ-20-0006", 
+  "vehicleNo": "晋WC6799", 
+  "wareHouseName": "原料生产基地", 
+  "wareHouseAddr": "翠屏长江之源", 
+  "weightNo": "3567890", 
+  "materialList": [ 
+    { 
+      "materialCode": "202306281022", 
+      "materialName": "高粱", 
+      "materialUnit": "KG", 
+      "materialNum": "150.125" 
+    } 
+  ] 
+} 
+ 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": { 
+        "countId": null, 
+        "maxLimit": null, 
+        "optimizeCountSql": true, 
+        "pages": "1", 
+
+========== 第 30 页 ==========
+        "records": [], 
+        "scheduleNoStatus": "3", 
+        "weightNo": "3567890" 
+    }, 
+    "message": "操作成功" 
+} 
+ 
+12、计量系统推送入库、退货量 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+计量推入
+库、退货量 
+/order/feign/dbjlxt post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+exceptOther 是 Double   
+spareNum1 是 Double   
+productNet 是 Double   
+weightNo 是 String 由 srm 推送产生司称单号  
+product 是 String   
+status 是 String   
+finalFlag 是 String   
+dataStatus 是 String   
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+  "exceptOther": 100.125, 
+  "spareNum1": 150.125, 
+  "productNet": 100.125, 
+  "weightNo": "104077", 
+  "product": "高粱", 
+  "status": "部分退货", 
+
+========== 第 31 页 ==========
+  "finalFlag": "0", 
+  "dataStatus": "1" 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": { 
+        "countId": null, 
+        "maxLimit": null, 
+        "optimizeCountSql": true, 
+        "salesReturnNum": 50.0, 
+        "scheduleNoStatus": "7", 
+        "storageNum": 100.125 
+    }, 
+    "message": "处理成功" 
+} 
+ 
+13、创建应付对账单 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+创建对账单 /api/order/pc/cost/receiveCost/create/bill post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+billName 是 String 对账单名称  
+dataType 是 Int   
+costBillStatus 是 Int 对账单状态  
+dataValue 是 String 由调度派车产生调度单号  
+ids 是 List   
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+
+========== 第 32 页 ==========
+{ 
+  "billName": "对账", 
+  "dataType": 2, 
+  "costBillStatus": 1, 
+  "dataValue": "DD202307050000004511", 
+  "ids": [ 
+    "1676840753024704514" 
+  ] 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": true, 
+    "message": "操作成功", 
+    "reconciliationNum": "DZ36360230857936920556270109661" 
+} 
+ 
+14、获取应付对账单详情及运费 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+获取应付对
+账单详情及
+运费 
+/api/order/pc/cost/payCost/page post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+current 是 Int   
+size 否 Int   
+dataType 是 Int Int  
+costBillId 是 String 对账单号  
+
+========== 第 33 页 ==========
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+  "current": 1, 
+  "size": 200, 
+  "dataType": 1, 
+  "costBillId": "DZ49696155887125490326557131668" 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "data": { 
+        "countId": null, 
+        "current": "1", 
+        "maxLimit": null, 
+        "optimizeCountSql": true, 
+        "orders": [], 
+        "pages": "1", 
+        "records": [ 
+            { 
+                "carrierName": "第一车队", 
+                "chargeId": "1676120061677375490", 
+                "costBillId": "1676121546600480768", 
+                "costBillStatus": 2, 
+                "createBy": "-1", 
+                "createTime": "2023-07-04 14:50:26", 
+                "createUser": "系统", 
+                "customerName": "第一车队", 
+                "driverIdcard": "511822198302285561", 
+                "driverName": "张飞", 
+                "ext1Cost": null, 
+                "ext2Cost": null, 
+                "ext3Cost": null, 
+                "ext4Cost": null, 
+                "ext5Cost": null, 
+                "freightPrice": 53, 
+                "freightSettlementName": "按单位计费", 
+                "id": "1676121267065819137", 
+                "incomingNum": null, 
+                "loadAddress": "五区一区", 
+                "logisticsOrderNo": "W202307040000001541", 
+
+========== 第 34 页 ==========
+                "materialName": "尖庄", 
+                "materialSpec": "1", 
+                "materialUnit": "件", 
+                "orderNo": "DD202307040000004047", 
+                "orderSourceNo": "LLYTDD00606189", 
+                "orderSystemNo": "DD202307040000004046", 
+                "orgId": "4140913758110176843", 
+                "outboundNum": 150.0, 
+                "planReceiveName": "浓香系列酒公司", 
+                "planSendName": "浓香系列酒公司", 
+                "scheduleNo": "DD202307040015", 
+                "settlementUnit": "件", 
+                "shipperName": "五粮浓香系列酒公司", 
+                "totalMoney": "7950", 
+                "transEndTime": "2023-07-04 14:48:48", 
+                "unloadAddress": "翠屏区临港开发区临港大道北段久安一路", 
+                "updateBy": "-1", 
+                "updateTime": "2023-07-04 14:50:26", 
+                "updateUser": "系统", 
+                "vehicleName": "川C40R8N" 
+            } 
+        ], 
+        "searchCount": true, 
+        "size": "200", 
+        "total": "1" 
+    }, 
+    "message": "操作成功" 
+} 
+ 
+15、添加承运商 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+添加承运商 /api/user/pc/carrier/carrier/add post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+
+========== 第 35 页 ==========
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+carrierName 是 String 承运商名称  
+bizVehicleType 否 String 承运商类型，1 外部 2 内部  
+contactTel 是 String 承运商手机号  
+password 是 String 承运商登录密码，MD5 加
+密存储 
+ 
+legalPerson 是 String 承运商联系人  
+creditIdentifier 是 String 企业信用代码  
+belong 否 Int   
+bizLicenseValidUtil 否 String   
+address 否 String   
+transLicenseValidUtil 否 String   
+bizScope 否 String   
+transLicenseNum 是 String 运输编号  
+carrierAlias 否 String 承运商简称  
+carrierType 否 String   
+contactEmail 否 String   
+type 否 String   
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+  "bizVehicleType": "2", 
+  "password": "202cb962ac59075b964b07152d234b70", 
+  "carrierName": "第二车队", 
+  "creditIdentifier": "91530425MA6Q6UM9XF", 
+  "belong": 1, 
+  "legalPerson": "张三", 
+  "bizLicenseValidUtil": "2027-07-30 00:00:00", 
+  "address": "西直门", 
+  "transLicenseValidUtil": "2025-07-19 00:00:00", 
+  "bizScope": "运输", 
+  "transLicenseNum": "JH789DFG3578032", 
+  "carrierAlias": "二车队", 
+  "carrierType": "1", 
+  "contactName": "李四", 
+  "contactTel": "13800000000", 
+  "contactEmail": "2569433010@qq.com", 
+  "type": "2", 
+  "registeredFund": "500", 
+  "transportType": "BCZY001", 
+  "cooperateYears": "15", 
+  "provinceCode": "110000", 
+
+========== 第 36 页 ==========
+  "provinceName": "北京市", 
+  "cityCode": "110099", 
+  "cityName": "北京市", 
+  "countyCode": "110108", 
+  "countyName": "海淀区", 
+  "vehicleProvinceCode": "110000", 
+  "vehicleCityCode": "110099", 
+  "vehicleCountyCode": "110108" 
+} 
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "createTime": "2023-07-14 16:59:58", 
+    "data": [], 
+    "message": "操作成功" 
+} 
+密码不正确的返回信息： 
+{ 
+    "code": 40000, 
+    "message": "承运商密码设置错误" 
+} 
+ 
+16、获取承运商列表 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+获取承运商
+列表 
+/api/user/pc/carrier/cys/findPage post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+timeStamp 否 String   
+
+========== 第 37 页 ==========
+3. 请求入参示例 
+ 
+{ 
+  "current": 1, 
+  "size": 20, 
+  "status": "1", 
+  "timeType": "0" 
+} 
+返回数据 
+ 
+17、删除承运商 
+基本信息 
+接口名称 接口路径 请求方法 创建人 备注 
+删除承运商 /api/user/pc/carrier/carrier/delete post Admin  
+请求参数 
+1. 请求头 
+参数名称 参数值 是否必填 示例 备注 
+Content-Type application/json;charset=UTF-8 是   
+Cookies 登录接口返回 是   
+2. 参数 
+参数名称 是否必填 参数类型 示例 备注 
+carrierId 是 String 承运商 id  
+current 否 Int   
+size 否 Int   
+status 否 String   
+timeType 否 String   
+timeStamp 否 String   
+3. 请求入参示例 
+ 
+{ 
+  "carrierId":"1666722201231867906", 
+  "current": 1, 
+  "size": 20, 
+  "status": "1", 
+  "timeType": "0" 
+} 
+ 
+
+========== 第 38 页 ==========
+ 
+返回数据 
+{ 
+    "code": 20000, 
+    "createTime": "2023-07-14 16:59:58", 
+    "data": [], 
+    "message": "操作成功" 
+} 

@@ -1,0 +1,47 @@
+# ===== Python 编译产物 =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ===== 虚拟环境（本项目 venv 334M / .venv 381M，务必忽略）=====
+venv/
+.venv/
+env/
+ENV/
+
+# ===== 测试框架产物 =====
+.pytest_cache/
+.coverage
+htmlcov/
+report/
+logs/
+allure-results/
+*.log
+extract.yaml
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# ===== AI 工具目录 =====
+.workbuddy/
+.claude/
+
+# ===== 本地配置（含 MySQL/Redis/ClickHouse/MongoDB 密码）=====
+conf/config.ini
+
+# ===== 第三方资料（版权问题 + 体积）=====
+*.pdf
+
+# ===== 其他 =====
+*.db
+*.sqlite3
+.DS_Store

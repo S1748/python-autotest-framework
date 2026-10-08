@@ -1,0 +1,37 @@
+# 文档第5页:获取商品列表接口
+# URL: /coupApply/cms/goodsList  方法: GET
+# 参数: msgType(必填)、page、size
+# 返回: goodList、error、error_code 等
+- baseInfo:
+    api_name: 获取商品列表
+    url: /coupApply/cms/goodsList
+    method: GET
+    header:
+      Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+  testCase:
+    # 正向用例:正常参数,预期成功
+    - case_name: 正常获取商品列表
+      params:                              # GET 请求参数写在 params 下
+        msgType: getHandsetListOfCust
+        page: 1
+        size: 20
+      validation:
+        - contains: { 'status_code': 200 }
+        - contains: { 'error_code': '0000' }
+
+    # 反向用例:缺必填参数 msgType,预期失败
+    - case_name: 异常·缺少必填参数msgType
+      params:
+        page: 1
+        size: 20
+      validation:
+        - contains: { 'status_code': 200 }
+
+    # 边界值用例:page 传负数
+    - case_name: 边界·page为负数
+      params:
+        msgType: getHandsetListOfCust
+        page: -1
+        size: 20
+      validation:
+        - contains: { 'status_code': 200 }

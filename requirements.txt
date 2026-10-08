@@ -1,0 +1,17 @@
+allure-pytest==2.13.5
+allure-python-commons==2.13.5
+clickhouse_sqlalchemy
+Flask
+jsonpath
+pandas
+paramiko
+pymongo
+PyMySQL
+PyQt5
+pytest
+PyYAML
+redis
+requests
+SQLAlchemy
+urllib3
+faker

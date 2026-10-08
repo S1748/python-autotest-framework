@@ -1,0 +1,48 @@
+# 文档第13-14页:校验商品库存接口
+# URL: /coupApply/cms/shoppingInventory  方法: POST
+# 头: Content-Type: application/json  (JSON 提交)
+# 参数: goodsId(必填)、count、timeStamp(可选)
+# 返回: status(0库存正常,1库存不足)、error、error_code 等
+- baseInfo:
+    api_name: 校验商品库存
+    url: /coupApply/cms/shoppingInventory
+    method: post
+    header:
+      Content-Type: application/json;charset=UTF-8
+  testCase:
+    # 正向用例:正常库存查询
+    - case_name: 正常校验库存
+      json:
+        goodsId: '18382788819'
+        count: '6'
+        timeStamp: 2
+      validation:
+        - contains: { 'status_code': 200 }
+        - contains: { 'error_code': '0000' }
+
+    # 反向用例:goodsId 为空
+    - case_name: 异常·goodsId为空
+      json:
+        goodsId: ''
+        count: '6'
+        timeStamp: 2
+      validation:
+        - contains: { 'status_code': 200 }
+
+    # 反向用例:count 为 0(边界值)
+    - case_name: 边界·count为0
+      json:
+        goodsId: '18382788819'
+        count: '0'
+        timeStamp: 2
+      validation:
+        - contains: { 'status_code': 200 }
+
+    # 反向用例:count 为负数(边界值)
+    - case_name: 边界·count为负数
+      json:
+        goodsId: '18382788819'
+        count: '-5'
+        timeStamp: 2
+      validation:
+        - contains: { 'status_code': 200 }

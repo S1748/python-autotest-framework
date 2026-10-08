@@ -1,0 +1,39 @@
+# 文档第6页:获取商品详情接口
+# URL: /coupApply/cms/productDetail  方法: POST
+# 头: Content-Type: application/json  (JSON 提交)
+# 参数: pro_id(必填)、page、size
+# 返回: item、error、error_code 等
+- baseInfo:
+    api_name: 获取商品详情
+    url: /coupApply/cms/productDetail
+    method: post
+    header:
+      Content-Type: application/json;charset=UTF-8
+  testCase:
+    # 正向用例:正常商品 id
+    - case_name: 正常获取商品详情
+      json:                                # JSON 提交参数写在 json 下
+        pro_id: '33809635011'
+        page: 1
+        size: 20
+      validation:
+        - contains: { 'status_code': 200 }
+        - contains: { 'error_code': '0000' }
+
+    # 反向用例:pro_id 为空字符串
+    - case_name: 异常·pro_id为空
+      json:
+        pro_id: ''
+        page: 1
+        size: 20
+      validation:
+        - contains: { 'status_code': 200 }
+
+    # 反向用例:pro_id 不存在
+    - case_name: 异常·pro_id不存在
+      json:
+        pro_id: '99999999999'
+        page: 1
+        size: 20
+      validation:
+        - contains: { 'status_code': 200 }
