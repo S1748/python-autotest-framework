@@ -1,0 +1,31 @@
+# ---------------------------------------------------------------
+# CI 专用依赖
+#
+# 为什么不直接用 requirements.txt？
+#   requirements.txt 里的 PyQt5 是 base/new_testcase_tools.py（本地的
+#   用例生成 GUI 工具）用的，CI 里根本不会导入它，装它只是白白多花一分钟。
+#   requirements.txt 本身的完整性由 ci.yml 里的 `pip install --dry-run` 那一步校验，
+#   所以这里精简掉 PyQt5 不会让「依赖漏声明」的问题溜过去。
+#
+# 为什么单独钉住 pytest / allure-pytest：
+#   这两个直接决定用例能不能被 pytest 发现和收集，一旦版本漂移，
+#   表现为「0 个用例被收集」而不是报错，很难查。其余包保持不钉，
+#   和 requirements.txt 的宽松策略保持一致。
+# ---------------------------------------------------------------
+pytest==9.1.1
+allure-pytest==2.13.5
+allure-python-commons==2.13.5
+
+PyYAML
+requests
+urllib3
+jsonpath
+faker
+pandas
+redis
+pymongo
+PyMySQL
+SQLAlchemy
+Flask
+clickhouse_sqlalchemy
+paramiko

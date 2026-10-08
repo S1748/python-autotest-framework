@@ -22,14 +22,30 @@ def clear_extract():
     remove_file("./report/temp", ['json', 'txt', 'attach', 'properties'])
 
 
+# 会话开始时间，由 pytest_sessionstart 钩子写入。
+# 不用 terminalreporter._sessionstarttime，该属性是 pytest 私有实现，
+# 在 pytest 8 起已更名为 _session_start 且类型变为 timing.Instant，
+# 直接参与减法会抛 TypeError，导致摘要钩子整体失败。
+_SESSION_START = time.time()
+
+
+def pytest_sessionstart(session):
+    """记录本次会话开始时间，用于统计执行总时长"""
+    global _SESSION_START
+    _SESSION_START = time.time()
+
+
 def generate_test_summary(terminalreporter):
     """生成测试结果摘要字符串"""
-    total = terminalreporter._numcollected
-    passed = len(terminalreporter.stats.get('passed', []))
-    failed = len(terminalreporter.stats.get('failed', []))
-    error = len(terminalreporter.stats.get('error', []))
-    skipped = len(terminalreporter.stats.get('skipped', []))
-    duration = time.time() - terminalreporter._sessionstarttime
+    stats = terminalreporter.stats
+    total = getattr(terminalreporter, '_numcollected', None)
+    if total is None:
+        total = sum(len(v) for v in stats.values())
+    passed = len(stats.get('passed', []))
+    failed = len(stats.get('failed', []))
+    error = len(stats.get('error', []))
+    skipped = len(stats.get('skipped', []))
+    duration = round(time.time() - _SESSION_START, 2)
 
     summary = f"""
     自动化测试结果，通知如下，请着重关注测试失败的接口，具体执行结果如下：

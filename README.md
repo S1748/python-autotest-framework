@@ -65,11 +65,14 @@ pythonproject/
 │   ├── single_api/       # 单接口用例
 │   ├── business_scenario/     # 业务场景串联用例
 │   └── product_manager/         # 商品管理模块用例
+├── tests/                      # 框架自身的单元测试（不依赖被测服务，CI 里会跑）
 ├── conftest.py                 # pytest 全局钩子（会话级夹具、结果汇总）
 ├── environment.xml             # Allure 报告的环境信息
 ├── pytest.ini                  # pytest 配置
 ├── requirements.txt            # 依赖清单
-└── run.py                      # 执行入口
+├── requirements-ci.txt         # CI 专用依赖（去掉 GUI 用的 PyQt5）
+├── run.py                      # 执行入口
+└── .github/workflows/ci.yml    # GitHub Actions 流水线
 ```
 
 ## 快速开始
@@ -196,6 +199,27 @@ python run.py
 
 **不想手写 YAML 用例**
 运行 `base/new_testcase_tools.py`，在图形界面里填好接口信息，先点「接口调试」确认能通，再点「生成 yaml 文件」。
+
+## 持续集成
+
+仓库带了 GitHub Actions 流水线（`.github/workflows/ci.yml`），push 到 `main` 或提 PR 时自动触发，分三关：
+
+| Job | 做什么 | 拦住什么问题 |
+| --- | --- | --- |
+| `lint` | `python -m compileall` 编译全部源码 | 语法错误、缩进写错 |
+| `unit-test` | `pytest tests/ -v` 跑框架自身的单元测试 | 断言逻辑、`${}` 替换、YAML 解析、配置读取、密钥写死 |
+| `collect` | `pytest --collect-only testcase/` | YAML 被改坏导致整个模块 0 用例 |
+
+**为什么不在 CI 里真正执行 `testcase/` 下的接口用例？**
+那些用例要连 `conf/config.ini` 里 `[api_envi] host` 指向的测试环境，还要连 MySQL / Redis。CI 里没有这些依赖，硬跑只会全红，所以 CI 只做「收集阶段」校验，确认 YAML 合法、用例能被正常展开。真实执行还是本地或 Jenkins 上跑。
+
+**框架单元测试跑哪些？**
+`tests/` 目录下都是不依赖被测服务的纯逻辑用例：`DebugTalk` 的加密与时间工具、`replace_load` 的占位符替换、五种断言模式、配置读取、YAML 加载，以及一条防止把钉钉 token 写回源码的守卫。本地执行：
+
+```bash
+pip install -r requirements-ci.txt
+pytest tests/ -v
+```
 
 ## 说明
 

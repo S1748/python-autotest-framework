@@ -14,7 +14,7 @@ def remove_file(filepath, endlst):
             # 获取该目录下所有文件名称
             dir_lst_files = os.listdir(filepath)
             for file_name in dir_lst_files:
-                fpath = filepath + '\\' + file_name
+                fpath = os.path.join(filepath, file_name)
                 # endswith判断字符串是否以指定后缀结尾
                 if isinstance(endlst, list):
                     for ft in endlst:
